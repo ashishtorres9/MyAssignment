@@ -1,8 +1,10 @@
 package com.example.ashish.myassignment.Fragments;
 
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,8 @@ import com.example.ashish.myassignment.R;
  * A simple {@link Fragment} subclass.
  */
 public class AssignmentFragment extends Fragment {
+
+    FloatingActionButton fa;
 
 
     public AssignmentFragment() {
@@ -27,6 +31,16 @@ public class AssignmentFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View viewRoot= inflater.inflate(R.layout.fragment_assignment, container, false);
+
+        fa=viewRoot.findViewById(R.id.floatingActionButton);
+        fa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                InsertFragment insertFragment=new InsertFragment();
+                FragmentTransaction fragmentTransaction=getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, insertFragment).commit();
+            }
+        });
         return viewRoot;
     }
 
@@ -35,4 +49,6 @@ public class AssignmentFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Assignments");
     }
+
+
 }
